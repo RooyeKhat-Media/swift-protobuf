@@ -116,7 +116,30 @@ class MessageGenerator {
       }
     }
 
-    var conformance: [String] = ["SwiftProtobuf.Message"]
+    //iGap
+    enum MessageType {
+        case general
+        case response
+        case request
+    }
+    var type = MessageType.general
+    for f in fields {
+        if f.fieldMapNames == ".standard(proto: \"IGP_request\")" {
+            type = MessageType.request
+        } else if f.fieldMapNames == ".standard(proto: \"IGP_response\")" {
+            type = MessageType.response
+        }
+    }
+    var conformance = [String]()
+    switch type {
+    case .general:
+        conformance.append("SwiftProtobuf.Message")
+    case .response:
+        conformance.append("SwiftProtobuf.ResponseMessage")
+    case .request:
+        conformance.append("SwiftProtobuf.RequestMessage")
+    }
+    
     if isExtensible {
       conformance.append("SwiftProtobuf.ExtensibleMessage")
     }
