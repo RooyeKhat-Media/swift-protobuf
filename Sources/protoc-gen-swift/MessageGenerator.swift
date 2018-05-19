@@ -141,14 +141,12 @@ class MessageGenerator {
     }
 
     if isExtensible {
-      conformances = ": SwiftProtobuf.ExtensibleMessage"
-    } else {
-      conformances = ""
+        conformance.append("SwiftProtobuf.ExtensibleMessage")
     }
     p.print(
         "\n",
         descriptor.protoSourceComments(),
-        "\(visibility)struct \(swiftRelativeName)\(conformances) {\n")
+        "\(visibility)struct \(swiftRelativeName)\(conformance) {\n")
     p.indent()
     p.print("// SwiftProtobuf.Message conformance is added in an extension below. See the\n",
             "// `Message` and `Message+*Additions` files in the SwiftProtobuf library for\n",
