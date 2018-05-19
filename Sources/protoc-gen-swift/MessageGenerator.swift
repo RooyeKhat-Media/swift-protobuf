@@ -130,18 +130,18 @@ class MessageGenerator {
             type = MessageType.response
         }
     }
-    var conformance = [String]()
+    var conformance : String
     switch type {
     case .general:
-        conformance.append("SwiftProtobuf.Message")
+        conformance = ": SwiftProtobuf.Message"
     case .response:
-        conformance.append("SwiftProtobuf.ResponseMessage")
+        conformance = ": SwiftProtobuf.ResponseMessage"
     case .request:
-        conformance.append("SwiftProtobuf.RequestMessage")
+        conformance = ": SwiftProtobuf.RequestMessage"
     }
 
     if isExtensible {
-        conformance.append("SwiftProtobuf.ExtensibleMessage")
+        conformance = ": SwiftProtobuf.ExtensibleMessage"
     }
     p.print(
         "\n",
