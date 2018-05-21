@@ -69,12 +69,12 @@ class GeneratorOptions {
     self.protoToModuleMappings = protoFileToModule ?? ProtoFileToModuleMappings()
     self.visibility = visibility
 
-    switch visibility {
-    case .Internal:
-      visibilitySourceSnippet = ""
-    case .Public:
+//    switch visibility {
+//    case .Internal:
+//      visibilitySourceSnippet = ""
+//    case .Public:
       visibilitySourceSnippet = "public "
-    }
+//    }
 
   }
 }
